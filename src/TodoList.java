@@ -6,6 +6,12 @@ import java.io.File;
 
 public class TodoList {
   private ArrayList<Task> todoList;
+  // private String heading = "\u001b[30;46m";
+  private String reset = "\u001b[0m";
+  private String completed = "\u001b[30;42m";
+  // private String completed = "\u001b[38;5;0m\u001b[48;5;157m";
+  private String due = "\u001b[30;41m";
+  // private String due = "\u001b[38;5;15m\u001b[48;5;197m";
 
   public TodoList() {
     this.todoList = new ArrayList<>();
@@ -122,51 +128,51 @@ public class TodoList {
 
   public void showTasks() {
     int index = 0;
-    System.out.println("\n+---+----------------------------------------+----------+------+");
+    System.out.println("+---+----------------------------------------+----------+------+");
     String heading = String.format("|%-3s|%-40s|%-10s|%-5s|", "Id", "Task", "Category", "Status");
     System.out.println(heading);
     System.out.println("+---+----------------------------------------+----------+------+");
     for (Task task : todoList) {
-      String row = String.format("|%-3d|%-40s|%-10s|%-6s|", index, task.getTask(), task.getCategory(),
-          (task.getStatus() ? "Done" : "Due"));
+      String row = String.format("|%-3d|%-40s|%-10s|%s%-6s%s|", index, task.getTask(), task.getCategory(),
+          (task.getStatus() ? this.completed : this.due),
+          (task.getStatus() ? "Done" : "Due"), this.reset);
       System.out.println(row);
       index++;
     }
     System.out.println("+---+----------------------------------------+----------+------+");
-    // System.out.println("\n");
   }
 
   public void showTasks(String category) {
-    System.out.println("\n+---+----------------------------------------+----------+------+");
+    System.out.println("+---+----------------------------------------+----------+------+");
     String heading = String.format("|%-3s|%-40s|%-10s|%-5s|", "Id", "Task", "Category", "Status");
     System.out.println(heading);
     System.out.println("+---+----------------------------------------+----------+------+");
     for (int i = 0; i < todoList.size(); i++) {
       Task task = todoList.get(i);
       if (task.getCategory().equals(category)) {
-        String row = String.format("|%-3d|%-40s|%-10s|%-6s|", i, task.getTask(), task.getCategory(),
-            (task.getStatus() ? "Done" : "Due"));
+        String row = String.format("|%-3d|%-40s|%-10s|%s%-6s%s|", i, task.getTask(), task.getCategory(),
+            (task.getStatus() ? this.completed : this.due),
+            (task.getStatus() ? "Done" : "Due"), this.reset);
         System.out.println(row);
       }
     }
     System.out.println("+---+----------------------------------------+----------+------+");
-    // System.out.println("\n");
   }
 
   public void showTasks(boolean status) {
-    System.out.println("\n+---+----------------------------------------+----------+------+");
+    System.out.println("+---+----------------------------------------+----------+------+");
     String heading = String.format("|%-3s|%-40s|%-10s|%-5s|", "Id", "Task", "Category", "Status");
     System.out.println(heading);
     System.out.println("+---+----------------------------------------+----------+------+");
     for (int i = 0; i < todoList.size(); i++) {
       Task task = todoList.get(i);
       if (task.getStatus() == status) {
-        String row = String.format("|%-3d|%-40s|%-10s|%-6s|", i, task.getTask(), task.getCategory(),
-            (task.getStatus() ? "Done" : "Due"));
+        String row = String.format("|%-3d|%-40s|%-10s|%s%-6s%s|", i, task.getTask(), task.getCategory(),
+            (task.getStatus() ? this.completed : this.due),
+            (task.getStatus() ? "Done" : "Due"), this.reset);
         System.out.println(row);
       }
     }
     System.out.println("+---+----------------------------------------+----------+------+");
-    // System.out.println("\n");
   }
 }

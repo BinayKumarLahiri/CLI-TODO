@@ -158,7 +158,7 @@ public class App {
                 { "help", "Display all the Commands" },
                 { "exit", "Exit the Program{Without Saving}" }
         };
-        System.out.println("\n+---+-------------------------+--------------------------------+");
+        System.out.println("+---+-------------------------+--------------------------------+");
         String heading = String.format("|%-3s|%-25s|%-32s|", "Id", "Command",
                 "Description");
         System.out.println(heading);
